@@ -1,6 +1,12 @@
-# Demo do Sistema Secretaria
+# Sistema Secretaria
 
-Este é um protótipo funcional do sistema **Secretaria** - Portal de Registo de Tempo e Despesas da Quaternaire.
+[![IBM Cloud](https://img.shields.io/badge/IBM%20Cloud-Ready-blue?logo=ibm)](https://cloud.ibm.com)
+[![Deploy to IBM Cloud](https://img.shields.io/badge/Deploy-IBM%20Cloud-blue?logo=ibm&logoColor=white)](QUICKSTART-IBM-CLOUD.md)
+[![License](https://img.shields.io/badge/License-Quaternaire-red)](https://quaternaire.pt)
+
+Portal web de registo de tempo e despesas para a **Quaternaire Portugal**.
+
+Substitui o processo manual baseado em Excel, reduzindo o esforço administrativo de 5-6 dias para <2 dias por mês.
 
 ## 🚀 Como Usar
 
