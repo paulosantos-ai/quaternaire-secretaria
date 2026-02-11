@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal do Colaborador - Secretaria</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="nav-header">
+                <div class="logo">
+                    <img src="logo.svg" alt="Quaternaire" class="logo-img">
+                    <div>
+                        <h1>Secretaria</h1>
+                        <p class="subtitle">Portal do Colaborador</p>
+                    </div>
+                </div>
+                <div class="nav-actions">
+                    <div class="user-info">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                        <span>João Silva</span>
+                    </div>
+                    <a href="index.html" class="btn btn-outline btn-small">Sair</a>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="month-selector">
+                <label for="month-select" style="margin: 0;">Mês de trabalho:</label>
+                <select id="month-select">
+                    <option value="2026-02">Fevereiro 2026</option>
+                    <option value="2026-01">Janeiro 2026</option>
+                    <option value="2025-12">Dezembro 2025</option>
+                </select>
+                <span id="submission-status" class="badge badge-warning">Rascunho</span>
+            </div>
+
+            <div class="dashboard-grid">
+                <!-- Registo de Dias -->
+                <div class="card">
+                    <h3>Registo de Dias de Trabalho</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 1rem;">
+                        Registe os seus dias de trabalho por projeto. Unidade: meio-dia (0.5). Máximo diário: 1 dia.
+                    </p>
+
+                    <div class="form-group">
+                        <label>Adicionar Novo Dia</label>
+                        <div style="display: grid; grid-template-columns: 1fr 2fr 1fr auto; gap: 0.5rem; align-items: end;">
+                            <div>
+                                <label for="day-date" style="font-size: 0.75rem; color: var(--text-secondary);">Data</label>
+                                <input type="date" id="day-date" value="2026-02-11">
+                            </div>
+                            <div>
+                                <label for="day-code" style="font-size: 0.75rem; color: var(--text-secondary);">Projeto/Proposta</label>
+                                <select id="day-code">
+                                    <option value="">Selecione...</option>
+                                    <optgroup label="Projetos">
+                                        <option value="P-2024-001">P-2024-001 - EDP Inovação Digital</option>
+                                        <option value="P-2024-005">P-2024-005 - Sonae Cloud Migration</option>
+                                        <option value="P-2025-012">P-2025-012 - CGD Transformação</option>
+                                    </optgroup>
+                                    <optgroup label="Propostas">
+                                        <option value="AP-2026-003">AP-2026-003 - NOS Consultoria</option>
+                                        <option value="AP-2026-007">AP-2026-007 - TAP Strategy</option>
+                                    </optgroup>
+                                    <optgroup label="Angariações">
+                                        <option value="AP-2026-ANG-001">AP-2026-ANG-001 - Galp Prospecção</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="day-amount" style="font-size: 0.75rem; color: var(--text-secondary);">Dias</label>
+                                <select id="day-amount">
+                                    <option value="0.5">0.5 (meio-dia)</option>
+                                    <option value="1">1.0 (dia inteiro)</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-primary btn-small" onclick="addDay()">Adicionar</button>
+                        </div>
+                    </div>
+
+                    <div id="days-alert" class="alert alert-warning" style="display: none;">
+                        ⚠️ Total do dia excede 1 dia. Por favor, ajuste os registos.
+                    </div>
+
+                    <table id="days-table">
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Projeto/Proposta</th>
+                                <th>Tipo</th>
+                                <th>Dias</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="days-tbody">
+                            <tr>
+                                <td>2026-02-03</td>
+                                <td>P-2024-001 - EDP Inovação Digital</td>
+                                <td><span class="badge badge-info">Projeto</span></td>
+                                <td>1.0</td>
+                                <td><button class="btn btn-outline btn-small" onclick="removeRow(this)">Remover</button></td>
+                            </tr>
+                            <tr>
+                                <td>2026-02-04</td>
+                                <td>P-2024-001 - EDP Inovação Digital</td>
+                                <td><span class="badge badge-info">Projeto</span></td>
+                                <td>0.5</td>
+                                <td><button class="btn btn-outline btn-small" onclick="removeRow(this)">Remover</button></td>
+                            </tr>
+                            <tr>
+                                <td>2026-02-04</td>
+                                <td>AP-2026-003 - NOS Consultoria</td>
+                                <td><span class="badge badge-warning">Proposta</span></td>
+                                <td>0.5</td>
+                                <td><button class="btn btn-outline btn-small" onclick="removeRow(this)">Remover</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Registo de Despesas -->
+                <div class="card">
+                    <h3>Registo de Despesas</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 1rem;">
+                        Registe as despesas associadas a datas específicas. Apenas datas com dias registados são permitidas.
+                    </p>
+
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="no-expenses" onchange="toggleExpenses()">
+                            Sem despesas neste mês
+                        </label>
+                    </div>
+
+                    <div id="expenses-form">
+                        <div class="form-group">
+                            <label>Adicionar Nova Despesa</label>
+                            <div style="display: grid; grid-template-columns: 1fr 2fr 1fr auto; gap: 0.5rem; align-items: end;">
+                                <div>
+                                    <label for="expense-date" style="font-size: 0.75rem; color: var(--text-secondary);">Data</label>
+                                    <input type="date" id="expense-date" value="2026-02-11">
+                                </div>
+                                <div>
+                                    <label for="expense-desc" style="font-size: 0.75rem; color: var(--text-secondary);">Descrição</label>
+                                    <input type="text" id="expense-desc" placeholder="Ex: Deslocação cliente...">
+                                </div>
+                                <div>
+                                    <label for="expense-amount" style="font-size: 0.75rem; color: var(--text-secondary);">Valor (€)</label>
+                                    <input type="number" id="expense-amount" placeholder="0.00" step="0.01">
+                                </div>
+                                <button class="btn btn-primary btn-small" onclick="addExpense()">Adicionar</button>
+                            </div>
+                        </div>
+
+                        <div id="expenses-alert" class="alert alert-warning" style="display: none;">
+                            ⚠️ Despesa numa data sem dias registados. Por favor, registe primeiro os dias de trabalho.
+                        </div>
+
+                        <table id="expenses-table">
+                            <thead>
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Descrição</th>
+                                    <th>Valor</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="expenses-tbody">
+                                <tr>
+                                    <td>2026-02-03</td>
+                                    <td>Deslocação cliente Lisboa</td>
+                                    <td>45.50 €</td>
+                                    <td><button class="btn btn-outline btn-small" onclick="removeRow(this)">Remover</button></td>
+                                </tr>
+                                <tr>
+                                    <td>2026-02-04</td>
+                                    <td>Almoço de trabalho</td>
+                                    <td>28.00 €</td>
+                                    <td><button class="btn btn-outline btn-small" onclick="removeRow(this)">Remover</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resumo e Submissão -->
+            <div class="card">
+                <h3>Resumo do Mês</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+                    <div>
+                        <div style="font-size: 0.875rem; color: var(--text-secondary);">Total de Dias</div>
+                        <div style="font-size: 1.5rem; font-weight: 600;" id="total-days">3.0</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.875rem; color: var(--text-secondary);">Total de Despesas</div>
+                        <div style="font-size: 1.5rem; font-weight: 600;" id="total-expenses">73.50 €</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.875rem; color: var(--text-secondary);">Número de Registos</div>
+                        <div style="font-size: 1.5rem; font-weight: 600;" id="total-entries">5</div>
+                    </div>
+                </div>
+
+                <div class="alert alert-info">
+                    ℹ️ Verifique todos os dados antes de submeter. Após a submissão, só poderá fazer alterações contactando a administração.
+                </div>
+
+                <div class="actions">
+                    <button class="btn btn-outline">Guardar Rascunho</button>
+                    <button class="btn btn-success" onclick="submitMonth()">Submeter Mês</button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Quaternaire - Sistema Secretaria</p>
+        </footer>
+    </div>
+
+    <script src="colaborador.js"></script>
+</body>
+</html>

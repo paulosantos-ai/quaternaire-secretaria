@@ -1,0 +1,28 @@
+<svg width="220" height="60" viewBox="0 0 220 60" xmlns="http://www.w3.org/2000/svg">
+  <!-- Pattern of triangles (3x3 grid) -->
+  <!-- Row 1 -->
+  <polygon points="0,0 15,0 0,15" fill="#000000"/>
+  <polygon points="20,0 35,0 20,15" fill="#000000"/>
+  <polygon points="40,0 55,0 40,15" fill="#000000"/>
+
+  <!-- Row 2 -->
+  <polygon points="0,20 15,20 0,35" fill="#000000"/>
+  <polygon points="20,20 35,20 20,35" fill="#000000"/>
+  <polygon points="40,20 55,20 40,35" fill="#000000"/>
+
+  <!-- Row 3 -->
+  <polygon points="0,40 15,40 0,55" fill="#000000"/>
+  <polygon points="20,40 35,40 20,55" fill="#000000"/>
+  <!-- Red square instead of triangle -->
+  <rect x="40" y="40" width="15" height="15" fill="#E4002B"/>
+
+  <!-- Text: Quaternaire -->
+  <text x="62" y="35" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#000000">
+    Quaternaire
+  </text>
+
+  <!-- Text: Portugal -->
+  <text x="62" y="53" font-family="Arial, sans-serif" font-size="18" font-weight="normal" fill="#000000">
+    Portugal
+  </text>
+</svg>
