@@ -4,10 +4,21 @@ Este é um protótipo funcional do sistema **Secretaria** - Portal de Registo de
 
 ## 🚀 Como Usar
 
+### Opção 1: Local
 1. Abra o ficheiro `index.html` num browser web
 2. Escolha o perfil que deseja explorar:
    - **Portal do Colaborador**: Interface para registo de dias e despesas
    - **Painel Administrativo**: Dashboard de gestão e acompanhamento
+
+### Opção 2: Deploy na IBM Cloud
+Consulte o guia completo em [DEPLOY.md](DEPLOY.md) para instruções detalhadas de deploy na IBM Cloud.
+
+**Deploy rápido:**
+```bash
+ibmcloud login
+ibmcloud target -r eu-gb
+ibmcloud cf push
+```
 
 ## 📋 Funcionalidades Demonstradas
 

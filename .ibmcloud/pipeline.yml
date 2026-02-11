@@ -1,0 +1,16 @@
+---
+stages:
+- name: Deploy to IBM Cloud
+  inputs:
+  - type: git
+    branch: main
+  jobs:
+  - name: Deploy
+    type: deployer
+    target:
+      region_id: ibm:yp:eu-gb
+      organization: quaternaire
+      space: production
+    script: |
+      #!/bin/bash
+      cf push "${CF_APP}"

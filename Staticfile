@@ -1,0 +1,3 @@
+root: .
+location_include: nginx/conf/*.conf
+force_https: true

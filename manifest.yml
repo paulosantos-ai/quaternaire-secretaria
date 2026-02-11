@@ -1,0 +1,9 @@
+---
+applications:
+- name: quaternaire-secretaria
+  memory: 64M
+  instances: 1
+  buildpack: staticfile_buildpack
+  random-route: false
+  routes:
+  - route: quaternaire-secretaria.eu-gb.mybluemix.net
